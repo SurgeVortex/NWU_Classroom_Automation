@@ -2,7 +2,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.3
-import "./"
+import "."
 
 ApplicationWindow {
     id: window
@@ -27,7 +27,7 @@ ApplicationWindow {
                     onClicked: drawer.position ? drawer.close() : drawer.open()
                     states: [
                         State {
-                        name: "hidden"; when: App_Settings.logged_in
+                        name: "hidden"; when: !App_Settings.logged_in
                         PropertyChanges { target: drawer_icon; visible: false }
                         PropertyChanges { target:drawer_button; enabled: false }
                     }
@@ -111,12 +111,6 @@ ApplicationWindow {
             name: "Decreace Volume"
             Layout.fillHeight: true
             Layout.fillWidth: true
-        }
-        Button {
-//            Text: "test logged_in value"
-            onClicked: {
-                console.log ("ligged_in: " + App_Settings.logged_in)
-            }
         }
     }
 

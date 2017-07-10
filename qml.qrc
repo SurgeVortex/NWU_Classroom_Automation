@@ -20,5 +20,6 @@
         <file>Side_Panel.qml</file>
         <file>Main_Menu.qml</file>
         <file>App_Settings.qml</file>
+        <file>qmldir</file>
     </qresource>
 </RCC>

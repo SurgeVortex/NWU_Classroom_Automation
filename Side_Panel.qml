@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import "."
 
 Drawer {
     id: drawer
@@ -67,7 +68,7 @@ Drawer {
         states: [
             State{
                 name: "hidden"; when: !App_Settings.logged_in
-                PropertyChanges { target: side_panel; visible: false }
+//                PropertyChanges { target: side_panel; visible: false }
                 PropertyChanges { target: drawer; width: 0 }
             }
         ]
