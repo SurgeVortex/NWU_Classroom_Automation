@@ -65,12 +65,12 @@ Drawer {
             ListElement { title: "test2" }
         }
 
-        states: [
-            State{
-                name: "hidden"; when: !App_Settings.logged_in
-//                PropertyChanges { target: side_panel; visible: false }
-                PropertyChanges { target: drawer; width: 0 }
-            }
-        ]
+//        states: [
+//            State{
+//                name: "hidden"; when: !App_Settings.logged_in
+////                PropertyChanges { target: side_panel; visible: false }
+//                PropertyChanges { target: drawer; width: 0 }
+//            }
+//        ]
     }
 }

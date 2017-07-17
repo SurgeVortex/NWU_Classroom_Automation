@@ -11,6 +11,15 @@ ApplicationWindow {
     height: 480
     title: qsTr("Classroom Automation")
 
+    Loader { id: loader }
+//    App_Settings.onLogged_inChanged: {
+//        console.log ("test")
+//        if (App_Settings.logged_in === true)
+//            loader.source = "Side_Panel.qml"
+//    }
+
+
+
     header: ToolBar {
         id: app_header
             RowLayout {
@@ -53,18 +62,19 @@ ApplicationWindow {
 
                     onClicked: {
                         if ( App_Settings.logged_in === false)
-                            login_dialog.open()
+                        {
+//                            login_dialog.open()
+                            login_dialog_loader.sourceComponent = login_dialog_component
+                        }
                         else
                             main_menu.open()
+
                     }
                 }
             }
     }
 
     Main_Menu {}
-
-
-    Side_Panel { id:drawer }
 
     GridLayout {
         id: grid
@@ -114,41 +124,35 @@ ApplicationWindow {
         }
     }
 
-    Dialog {
-        id: login_dialog
-        modal: true
-        title: "Please enter login details"
-        x: (window.width - width) / 2
-        y: window.height / 6
-        contentItem: Rectangle {
-            Column {
-                anchors.centerIn: parent
-                spacing: 16
-                Column {
-                    spacing: 4
-                    Text { text: "Username" }
-                    TextField { focus: true }
-                }
-                Column {
-                    spacing: 4
-                    Text { text: "Password" }
-                    TextField {
-                        echoMode: TextInput.Password
-                    }
-                }
-                Row {
-                    spacing: 16
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    Button {
-                        text: "Login"
-                        onClicked: {
-                            App_Settings.logged_in = true
-                            login_dialog.close()
-                        }
-                    }
-                    Button { text: "Cancel"; onClicked: login_dialog.close() }
-                }
+    Loader {
+        id: login_dialog_loader
+        anchors.centerIn: parent
+    }
+
+    Component{
+        id: login_dialog_component
+        Login_Dialog {
+            id: login_dialog
+            focus: true
+            width: window.width/3 < minimum_width ? minimum_width : window.width/3
+            height: window.height/1.5 < minimum_height ? minimum_height : window.height/1.5
+            onCancel_clicked: login_dialog_loader.sourceComponent = undefined
+            onLogin_clicked: {
+                App_Settings.logged_in = true
+                console.log ("Username: " + username + "\nPassword: " + password)
+                login_dialog_loader.sourceComponent = undefined
             }
+        }
+    }
+
+    Loader {
+        id: settings_menu_loader
+    }
+
+    Component {
+        id: settings_menu_component
+        Side_Panel {
+            id: drawer
         }
     }
 

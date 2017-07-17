@@ -1,10 +1,15 @@
 QT += qml quick
 
-CONFIG += c++11
+CONFIG += c++11 disable-desktop
 
 SOURCES += main.cpp
 
 RESOURCES += qml.qrc
+
+#static {
+#    QT += svg
+#    QTPLUGIN += qtvirtualkeyboardplugin
+#}
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
