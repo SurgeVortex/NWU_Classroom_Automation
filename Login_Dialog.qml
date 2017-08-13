@@ -1,8 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Dialogs 1.2
-import QtQuick.VirtualKeyboard 2.1
-import QtQuick.VirtualKeyboard.Styles 2.1
 
 Rectangle {
     id: root
@@ -37,8 +35,7 @@ Rectangle {
                 focus: true
 //                uname.forceActiveFocus()
                 placeholderText: "Enter Username"
-//                InputMethod {
-//                }
+//                inputMethodComposing:
                 onActiveFocusChanged: uname.o
             }
         }
@@ -65,11 +62,4 @@ Rectangle {
             }
         }
     }
-//    InputPanel {
-//            id: inputPanel
-//            y: Qt.inputMethod.visible ? parent.height - inputPanel.height : parent.height
-//            anchors.left: parent.left
-//            anchors.right: parent.right
-//            focus: true
-//    }
 }

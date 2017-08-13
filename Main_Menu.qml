@@ -12,10 +12,7 @@ Item {
             onClicked: { App_Settings.logged_in = 0 }
         }
         MenuItem {
-            text: "Open..."
-        }
-        MenuItem {
-            text: "Save"
+            text: "Remote Connection"
         }
     }
 }

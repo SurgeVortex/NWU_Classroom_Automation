@@ -2,6 +2,8 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Window 2.3
+import QtQuick.VirtualKeyboard 2.1
+import QtQuick.VirtualKeyboard.Styles 2.1
 import "."
 
 ApplicationWindow {
@@ -131,17 +133,31 @@ ApplicationWindow {
 
     Component{
         id: login_dialog_component
+        Flickable {
+            width: login_dialog.width
+            height: login_dialog.height
+            anchors.bottom: test
         Login_Dialog {
             id: login_dialog
             focus: true
             width: window.width/3 < minimum_width ? minimum_width : window.width/3
             height: window.height/1.5 < minimum_height ? minimum_height : window.height/1.5
+            anchors.bottom: Qt.inputMethod.visiblenone
             onCancel_clicked: login_dialog_loader.sourceComponent = undefined
             onLogin_clicked: {
                 App_Settings.logged_in = true
                 console.log ("Username: " + username + "\nPassword: " + password)
                 login_dialog_loader.sourceComponent = undefined
             }
+
+        }
+        }
+        InputPanel {
+                id: inputPanel
+                y: Qt.inputMethod.visible ? parent.height - inputPanel.height : parent.height
+                anchors.left: parent.left
+                anchors.right: parent.right
+                focus: true
         }
     }
 
@@ -161,4 +177,12 @@ ApplicationWindow {
 //        y: app_header.height
         anchors.right: parent.right
     }
+
+//    InputPanel {
+//            id: inputPanel
+//            y: Qt.inputMethod.visible ? parent.height - inputPanel.height : parent.height
+//            anchors.left: parent.left
+//            anchors.right: parent.right
+//            focus: true
+//    }
 }
